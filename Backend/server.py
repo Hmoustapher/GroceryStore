@@ -10,3 +10,6 @@ import uom_dao
 # Initialize Flask App
 app = Flask(__name)
 
+# Establish SQL Connection
+connection = get_sql_connection()
+
