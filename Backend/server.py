@@ -30,3 +30,11 @@ def insert_product():
         return jsonify({'product_id': product_id}), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@app.route('/getAllOrders', methods=['GET'])
+def get_all_orders():
+    try:
+        response = orders_dao.get_all_orders(connection)
+        return jsonify(response), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
