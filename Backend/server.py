@@ -21,3 +21,12 @@ def get_uom():
         return jsonify(response), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@app.route('/insertProduct', methods=['POST'])
+def insert_product():
+    try:
+        request_payload = json.loads(request.form['data'])
+        product_id = products_dao.insert_new_product(connection, request_payload)
+        return jsonify({'product_id': product_id}), 201
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
