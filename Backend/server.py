@@ -38,3 +38,25 @@ def get_all_orders():
         return jsonify(response), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@app.route('/insertOrder', methods=['POST'])
+def insert_order():
+    try:
+        request_payload = json.loads(request.form['data'])
+        order_id = orders_dao.insert_order(connection, request_payload)
+        return jsonify({'order_id': order_id}), 201
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/deleteProduct', methods=['POST'])
+def delete_product():
+    try:
+        product_id = request.form['product_id']
+        return_id = products_dao.delete_product(connection, product_id)
+        return jsonify({'product_id': return_id}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+if __name__ == "__main__":
+    print("Starting Python Flask Server For Grocery Store Management System")
+    app.run(port=5000)
