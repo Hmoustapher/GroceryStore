@@ -6,3 +6,7 @@ import json
 import products_dao
 import orders_dao
 import uom_dao
+
+# Initialize Flask App
+app = Flask(__name)
+
