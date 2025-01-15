@@ -13,3 +13,11 @@ app = Flask(__name)
 # Establish SQL Connection
 connection = get_sql_connection()
 
+# Routes
+@app.route('/getUOM', methods=['GET'])
+def get_uom():
+    try:
+        response = uom_dao.get_uoms(connection)
+        return jsonify(response), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
