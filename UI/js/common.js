@@ -24,3 +24,16 @@ function callApi(method, url, data) {
         }
     });
 }
+
+function calculateValue() {
+    var total = 0;
+    $(".product-item").each(function(index) {
+        var qty = parseFloat($(this).find('.product-qty').val() || 0);
+        var price = parseFloat($(this).find('#product_price').val() || 0);
+        var itemTotal = price * qty;
+        $(this).find('#item_total').val(itemTotal.toFixed(2));
+        total += itemTotal;
+    });
+    $("#product_grand_total").val(total.toFixed(2));
+}
+
