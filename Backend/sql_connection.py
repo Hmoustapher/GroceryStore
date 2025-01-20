@@ -17,4 +17,4 @@ def get_sql_connection():
             database='gs'
         )
     return __cnx
-
+     
