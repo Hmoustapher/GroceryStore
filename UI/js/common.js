@@ -37,3 +37,33 @@ function calculateValue() {
     $("#product_grand_total").val(total.toFixed(2));
 }
 
+function orderParser(order) {
+    return {
+        id: order.id,
+        date: order.datetime,
+        orderNo: order.order_id,
+        customerName: order.customer_name,
+        cost: parseFloat(order.total) || 0
+    };
+}
+
+function productParser(product) {
+    return {
+        id: product.product_id,
+        name: product.name,
+        unit: product.unit,
+        price: parseFloat(product.price_per_unit) || 0
+    };
+}
+
+function productDropParser(product) {
+    return {
+        id: product.id,
+        name: product.title
+    };
+}
+
+// To enable Bootstrap tooltip globally
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});
